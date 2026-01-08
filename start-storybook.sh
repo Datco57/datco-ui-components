@@ -1,22 +1,14 @@
 #!/bin/bash
 set -e
 
-REPO_URL="https://github.com/your-company/datco-ui-component.git"
-PROJECT_DIR="datco-ui-component"
 CONTAINER_NAME="datco-storybook"
 IMAGE_NAME="datco-storybook"
 PORT=6006
 
-# 1. 프로젝트 폴더가 있으면 pull, 없으면 clone
-if [ -d "$PROJECT_DIR/.git" ]; then
-  echo "🔄 기존 소스 폴더에서 최신 소스 pull..."
-  cd "$PROJECT_DIR"
-  git pull origin main
-else
-  echo "⬇️ Git에서 소스 클론..."
-  git clone "$REPO_URL"
-  cd "$PROJECT_DIR"
-fi
+# 1. 최신 소스 pull
+
+echo "🔄 최신 소스 pull..."
+git pull origin main
 
 # 2. Docker 이미지 빌드
 if [ -n "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
