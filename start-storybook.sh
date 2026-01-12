@@ -6,11 +6,10 @@ IMAGE_NAME="datco-storybook"
 PORT=6006
 
 # 1. 최신 소스 pull
-
 echo "🔄 최신 소스 pull..."
 git pull origin main
 
-# 2. Docker 이미지 빌드
+# 2. Docker 이미지 빌드 (storybook-static은 이미 Git에 포함됨)
 if [ -n "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
   echo "🛑 기존 컨테이너 중지 및 삭제..."
   docker stop $CONTAINER_NAME || true
@@ -21,7 +20,6 @@ echo "🐳 Docker 이미지 빌드 중..."
 docker build -t $IMAGE_NAME .
 
 # 3. Docker 컨테이너 실행
-
 echo "🚀 Storybook 컨테이너 실행 (포트 $PORT)..."
 docker run -d -p $PORT:80 --name $CONTAINER_NAME $IMAGE_NAME
 
