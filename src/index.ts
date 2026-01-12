@@ -136,3 +136,15 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
 } from './components/DropdownMenu';
+
+// Table
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from './components/Table';
