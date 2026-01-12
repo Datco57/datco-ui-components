@@ -3,6 +3,12 @@ import { Combobox } from './Combobox';
 import { Label } from '../Label';
 import { useState } from 'react';
 
+const frameworks = [
+  { value: 'next', label: 'Next.js' },
+  { value: 'react', label: 'React' },
+  { value: 'vue', label: 'Vue' },
+];
+
 const meta = {
   title: 'Components/Combobox',
   component: Combobox,
@@ -10,36 +16,46 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <div className="w-[300px]">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Combobox>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
-const frameworks = [
-  { value: 'next', label: 'Next.js' },
-  { value: 'react', label: 'React' },
-  { value: 'vue', label: 'Vue' },
-];
+type Story = StoryObj<typeof meta> & { args?: any };
 
 export const Default: Story = {
-  render: () => (
-    <div className="w-[300px]">
-      <Combobox options={frameworks} placeholder="프레임워크 선택..." />
-    </div>
-  ),
+  args: {
+    options: frameworks,
+    placeholder: '프레임워크 선택...',
+  },
 };
 
 export const WithLabel: Story = {
-  render: () => (
-    <div className="w-[300px] space-y-2">
-      <Label>프레임워크</Label>
-      <Combobox options={frameworks} placeholder="프레임워크 선택..." />
-    </div>
-  ),
+  args: {
+    options: frameworks,
+    placeholder: '프레임워크 선택...',
+  },
+  decorators: [
+    (Story) => (
+      <div className="w-[300px] space-y-2">
+        <Label>프레임워크</Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Controlled: Story = {
-  render: () => {
+  args: {
+    options: frameworks,
+    placeholder: '프레임워크 선택...',
+  },
+  render: (args) => {
     const [value, setValue] = useState('');
     
     return (
@@ -47,10 +63,9 @@ export const Controlled: Story = {
         <div className="space-y-2">
           <Label>프레임워크</Label>
           <Combobox
-            options={frameworks}
+            {...args}
             value={value}
             onValueChange={setValue}
-            placeholder="프레임워크 선택..."
           />
         </div>
         {value && (
@@ -76,12 +91,18 @@ const countries = [
 ];
 
 export const Countries: Story = {
-  render: () => (
-    <div className="w-[300px] space-y-2">
-      <Label>국가</Label>
-      <Combobox options={countries} placeholder="국가 선택..." />
-    </div>
-  ),
+  args: {
+    options: countries,
+    placeholder: '국가 선택...',
+  },
+  decorators: [
+    (Story) => (
+      <div className="w-[300px] space-y-2">
+        <Label>국가</Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 const languages = [
@@ -98,45 +119,58 @@ const languages = [
 ];
 
 export const LongList: Story = {
-  render: () => (
-    <div className="w-[300px] space-y-2">
-      <Label>언어</Label>
-      <Combobox 
-        options={languages} 
-        placeholder="언어 선택..."
-        emptyMessage="해당 언어를 찾을 수 없습니다."
-      />
-    </div>
-  ),
+  args: {
+    options: languages,
+    placeholder: '언어 선택...',
+    emptyMessage: '해당 언어를 찾을 수 없습니다.',
+  },
+  decorators: [
+    (Story) => (
+      <div className="w-[300px] space-y-2">
+        <Label>언어</Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Disabled: Story = {
-  render: () => (
-    <div className="w-[300px] space-y-2">
-      <Label>프레임워크 (비활성화)</Label>
-      <Combobox 
-        options={frameworks} 
-        placeholder="선택할 수 없습니다"
-        disabled={true}
-      />
-    </div>
-  ),
+  args: {
+    options: frameworks,
+    placeholder: '선택할 수 없습니다',
+    disabled: true,
+  },
+  decorators: [
+    (Story) => (
+      <div className="w-[300px] space-y-2">
+        <Label>프레임워크 (비활성화)</Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const CustomEmptyText: Story = {
-  render: () => (
-    <div className="w-[300px] space-y-2">
-      <Label>프레임워크</Label>
-      <Combobox 
-        options={frameworks} 
-        placeholder="프레임워크 선택..."
-        emptyText="검색 결과가 없습니다. 다른 키워드를 입력해주세요."
-      />
-    </div>
-  ),
+  args: {
+    options: frameworks,
+    placeholder: '프레임워크 선택...',
+    emptyText: '검색 결과가 없습니다. 다른 키워드를 입력해주세요.',
+  },
+  decorators: [
+    (Story) => (
+      <div className="w-[300px] space-y-2">
+        <Label>프레임워크</Label>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const FormExample: Story = {
+  args: {
+    options: frameworks,
+    placeholder: '선택하세요...',
+  },
   render: () => {
     const [framework, setFramework] = useState('');
     const [country, setCountry] = useState('');
