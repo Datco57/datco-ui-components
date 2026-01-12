@@ -88,6 +88,7 @@ module.exports = {
 - **Popover** - 팝오버
 - **RadioGroup** - 라디오 그룹
 - **Separator** - 구분선
+- **Table** - 테이블
 - **Tabs** - 탭
 - **Textarea** - 텍스트 영역
 - **ToggleGroup** - 토글 그룹
@@ -95,7 +96,7 @@ module.exports = {
 
 ## 요구사항
 
-- React 18.0.0 이상
+- React 18.0.0 이상 또는 React 19.0.0 이상
 - Tailwind CSS 3.x
 
 ## 업데이트

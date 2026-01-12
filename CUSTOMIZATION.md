@@ -185,3 +185,81 @@ variant: {
 ```tsx
 <Button variant="datco">DATCO 버튼</Button>
 ```
+
+## 8. Table 컴포넌트 커스터마이징
+
+Table 컴포넌트는 기본적으로 Tailwind CSS 클래스를 사용하여 스타일링됩니다.
+
+### 기본 사용법
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@datco/ui-component';
+
+<Table>
+  <TableCaption>주문 목록</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>주문번호</TableHead>
+      <TableHead>상태</TableHead>
+      <TableHead className="text-right">금액</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">ORD001</TableCell>
+      <TableCell>완료</TableCell>
+      <TableCell className="text-right">₩100,000</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+### 스타일 커스터마이징
+
+```tsx
+// 스트라이프 스타일 테이블
+<Table>
+  <TableBody>
+    <TableRow className="even:bg-muted/50">
+      <TableCell>데이터</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+// 컴팩트한 테이블
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableCell className="p-2 text-xs">작은 셀</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+// 커스텀 호버 효과
+<Table>
+  <TableBody>
+    <TableRow className="hover:bg-blue-50 dark:hover:bg-blue-950">
+      <TableCell>호버 효과</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+### CSS Variables로 테이블 색상 변경
+
+```css
+/* src/styles/globals.css */
+:root {
+  /* 테이블 관련 색상 커스터마이징 */
+  --muted: 210 40% 96.1%;           /* 테이블 행 호버 배경색 */
+  --muted-foreground: 215.4 16.3% 46.9%; /* 테이블 헤더 텍스트 색상 */
+}
+```
