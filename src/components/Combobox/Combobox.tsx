@@ -12,6 +12,8 @@ interface ComboboxProps {
   onValueChange?: (value: string) => void;
   placeholder?: string;
   emptyMessage?: string;
+  emptyText?: string;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -23,6 +25,8 @@ const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
       onValueChange,
       placeholder = '선택하세요...',
       emptyMessage = '결과가 없습니다.',
+      emptyText,
+      disabled = false,
       className,
     },
     ref
@@ -43,11 +47,14 @@ const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
       setSearch('');
     };
 
+    const displayEmptyMessage = emptyText || emptyMessage;
+
     return (
       <div ref={ref} className={cn('relative', className)}>
         <button
           type="button"
-          onClick={() => setOpen(!open)}
+          onClick={() => !disabled && setOpen(!open)}
+          disabled={disabled}
           className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <span>
@@ -87,7 +94,7 @@ const Combobox = React.forwardRef<HTMLDivElement, ComboboxProps>(
             </div>
             <div className="max-h-[300px] overflow-y-auto p-1">
               {filteredOptions.length === 0 ? (
-                <div className="py-6 text-center text-sm">{emptyMessage}</div>
+                <div className="py-6 text-center text-sm">{displayEmptyMessage}</div>
               ) : (
                 filteredOptions.map((option) => (
                   <div

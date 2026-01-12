@@ -110,6 +110,32 @@ export const LongList: Story = {
   ),
 };
 
+export const Disabled: Story = {
+  render: () => (
+    <div className="w-[300px] space-y-2">
+      <Label>프레임워크 (비활성화)</Label>
+      <Combobox 
+        options={frameworks} 
+        placeholder="선택할 수 없습니다"
+        disabled={true}
+      />
+    </div>
+  ),
+};
+
+export const CustomEmptyText: Story = {
+  render: () => (
+    <div className="w-[300px] space-y-2">
+      <Label>프레임워크</Label>
+      <Combobox 
+        options={frameworks} 
+        placeholder="프레임워크 선택..."
+        emptyText="검색 결과가 없습니다. 다른 키워드를 입력해주세요."
+      />
+    </div>
+  ),
+};
+
 export const FormExample: Story = {
   render: () => {
     const [framework, setFramework] = useState('');
