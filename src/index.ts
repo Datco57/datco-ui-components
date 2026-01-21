@@ -148,3 +148,18 @@ export {
   TableCell,
   TableCaption,
 } from './components/Table';
+
+// ChatBot
+export {
+  ChatBot,
+  ChatBotAvatar,
+  ChatBotMessage,
+  ChatBotTrigger,
+} from './components/ChatBot';
+export type {
+  ChatBotProps,
+  Message,
+  ChatBotAvatarProps,
+  ChatBotMessageProps,
+  ChatBotTriggerProps,
+} from './components/ChatBot';
